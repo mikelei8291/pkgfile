@@ -5,12 +5,17 @@ After=network-online.target nss-lookup.target
 Wants=network-online.target
 
 [Service]
-Type=oneshot
+Type=exec
+ExecCondition=/usr/bin/pidwait -xu0 pacman
 ExecStart=/usr/bin/pkgfile -u
+TimeoutStartSec=infinity
+RuntimeMaxSec=300
 Nice=19
 StandardOutput=null
 StandardError=journal
 PrivateTmp=yes
 PrivateDevices=yes
+ProtectSystem=full
+ProtectHome=yes
 CapabilityBoundingSet=
 NoNewPrivileges=yes

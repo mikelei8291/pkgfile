@@ -12,6 +12,7 @@ conf.set_quoted('PACKAGE_NAME', meson.project_name())
 conf.set_quoted('PACKAGE_VERSION', meson.project_version())
 conf.set_quoted('DEFAULT_CACHEPATH', get_option('cachedir'))
 conf.set_quoted('DEFAULT_PACMAN_CONF', '/etc/pacman.conf')
+conf.set('DEFAULT_DBPATH', get_option('dbpath'))
 
 cpp = meson.get_compiler('cpp')
 
@@ -141,6 +142,13 @@ if get_option('systemd_units')
     configure_file(
         input: 'systemd/pkgfile-update.service.in',
         output: 'pkgfile-update.service',
+        configuration: conf,
+        install_dir: systemunitdir,
+    )
+
+    configure_file(
+        input: 'systemd/pkgfile-update.path.in',
+        output: 'pkgfile-update.path',
         configuration: conf,
         install_dir: systemunitdir,
     )

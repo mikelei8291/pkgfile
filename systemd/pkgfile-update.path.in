@@ -1,0 +1,8 @@
+[Unit]
+Description=pkgfile datebase update path trigger
+
+[Path]
+PathChanged=@DEFAULT_DBPATH@/sync
+
+[Install]
+WantedBy=multi-user.target

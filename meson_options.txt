@@ -3,6 +3,11 @@ option('cachedir',
        value : '/var/cache/pkgfile',
        description : 'default directory to store pkgfile data')
 
+option('dbpath',
+       type : 'string',
+       value : '/var/lib/pacman',
+       description : 'default location of the toplevel database directory')
+
 option('systemd_units',
        type : 'boolean',
        value : true,
